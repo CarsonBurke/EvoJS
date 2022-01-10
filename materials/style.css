@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background: var(--foreground2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    --lightPurple: rgb(174, 0, 255);
+    --purple: rgb(123, 0, 224);
+    --darkPurple: rgb(83, 0, 151);
+    --lightRed: rgb(255, 0, 0);
+    --red: rgb(214, 0, 0);
+    --darkRed: rgb(151, 0, 0);
+    --lightBlue: rgb(0, 151, 238);
+    --blue: rgb(5, 80, 219);
+    --darkBlue: rgb(0, 64, 241);
+    --lightGreen: rgb(0, 255, 0);
+    --green: rgb(0, 212, 0);
+    --darkGreen: rgb(0, 184, 0);
+
+    color: black;
+    --foreground1: white;
+    --foreground2: whitesmoke;
+    --foreground3: white;
+    --invert: black;
+}
+
+body::-webkit-scrollbar {
+    width: 14px;
+}
+  
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+body::-webkit-scrollbar-thumb {
+    background: var(--foreground2);
+    box-shadow: inset rgba(0, 0, 0, 0.3) 0 0 0 1000px;
+    transition: all 0.3s;
+}
+
+/* Animations */
+
+@keyframes load {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: initial;
+    font-family: 'Comfortaa', 'sans-serif';
+}
+
+@font-face {
+    font-family: 'Material Icons Outlined';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v90/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons Outlined', 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+
+/* Template */
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    gap: 5px;
+    padding: 8px 30px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 10px 20px 0;
+    transition: all 0.2s;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    margin: auto;
+    text-decoration: none;
+    outline: 10px solid transparent;
+}
+
+.button:hover {
+    box-shadow: rgba(0, 0, 0, 0.4) 0 4px 12px 0, inset rgba(0, 0, 0, 0.2) 0 0 0 10000px;
+}
+
+.button:focus {
+    border-radius: 3px;
+    filter: none;
+    box-shadow: rgba(0, 0, 0, 0.4) 0 10px 35px 0;
+    outline-width: 3px;
+    outline-style: solid;
+}
+
+.greenButton {
+    background-color: var(--green);
+}
+
+.greenButton:focus {
+    outline-color: var(--lightGreen);
+}
+
+.purpleButton {
+    background-color: var(--purple);
+}
+
+.purpleButton:focus {
+    outline-color: var(--lightPurple);
+}
+
+.blueButton {
+    background-color: var(--blue);
+}
+
+.blueButton:focus {
+    outline-color: var(--lightBlue);
+}
+
+.redButton {
+    background-color: var(--red);
+}
+
+.redButton:focus {
+    outline-color: var(--lightRed);
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* UI */
+
+.uiParent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.uiChild {
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 20px 60px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--foreground3);
+}
+
+.uiHeader {
+    background: var(--foreground2);
+    padding: 20px 50px;
+    text-align: center;
+    font-weight: 550;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.uiContent {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 10px;
+}
+
+
+/* Custom UI */
+
+.gameHeader {
+    user-select: none;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.gameIcon {
+    width: 70px;
+    height: 70px;
+    user-select: none;
+}
+
+/* Game UI */
+
+.menuButton {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: fixed;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    padding-top: 15px;
+}
+
+.menuDot {
+    width: 10px;
+    height: 10px;
+    background: var(--invert);
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.7) 0 0 4px 0;
+}
+
+/* Game */
+
+.game {
+    background: var(--foreground1);
+    overflow: hidden;
+}
+
+.gameBorder {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: scroll;
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 10px 40px 0;
+}
+
+.gameBorder::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
