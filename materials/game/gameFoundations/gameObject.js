@@ -21,6 +21,7 @@ class GameObject {
 
 GameObject.prototype.draw = function() {
 
+
     const gameObject = this
 
     game.cm.drawImage(gameObject.image, gameObject.pos.left, gameObject.pos.top, gameObject.width, gameObject.height)

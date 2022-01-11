@@ -10,8 +10,8 @@ const tickSpeed = 100
 
 globalThis.game = undefined
 
-const gameWidth = 10000
-const gameHeight = 10000
+const gameWidth = 1000
+const gameHeight = 1000
 const gridSize = 30
 
 let ID = 0

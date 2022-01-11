@@ -1,7 +1,8 @@
 function runEnv() {
 
-    function updateGame() {
+    setInterval(updateGame, 1)
 
+    function updateGame() {
 
     }
 
@@ -17,6 +18,13 @@ function runEnv() {
         
         game.cm.setTransform(1, 0, 0, 1, 0, 0)
         game.cm.clearRect(0, 0, gameWidth, gameHeight)
+
+        //
+
+        game.offsetLeft = game.offsetLeftSpeed
+        game.offsetTop = game.offsetTopSpeed
+
+        game.cm.translate (game.offsetLeftSpeed, game.offsetLeftSpeed)
 
         // Restore the transform
 

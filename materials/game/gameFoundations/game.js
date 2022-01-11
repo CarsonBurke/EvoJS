@@ -3,6 +3,12 @@ class Game {
 
         const game = this
 
+        game.offsetLeftSpeed = 0
+        game.offsetTopSpeed = 0
+        
+        game.offsetLeft = 0
+        game.offsetTop = 0
+
         game.objects = {}
     }
 }
@@ -17,6 +23,10 @@ Game.prototype.init = function() {
 
     game.canvas = document.getElementById('game')
     game.border = document.getElementById('gameBorder')
+
+    window.onscroll = function() {
+        window.scrollTo(0, 0)
+    }
     
     game.canvas.ID = game.ID
 
@@ -44,56 +54,24 @@ Game.prototype.useHotkeys = function(event) {
 
     if (key == 'w') {
         
-        game.scrollUp()
+        game.offsetTop = Math.max(0, game.offsetTop + 10)
         return
     }
     if (key == 'a') {
 
-        game.scrollLeft()
+        game.offsetLeft = Math.max(0, game.offsetLeft + 10)
         return
     }
     if (key == 's') {
 
-        game.scrollDown()
+        game.offsetTop = Math.min(gameHeight, game.offsetTop - 10)
         return
     }
     if (key == 'd') {
 
-        game.scrollRight()
+        game.offsetLeft = Math.min(gameWidth, game.offsetLeft - 10)
         return
     }
-}
-
-Game.prototype.scrollUp = function() {
-    
-    game.border.scroll({
-        top: game.border.scrollTop - 50,
-        behavior: 'smooth'
-    })
-}
-
-Game.prototype.scrollLeft = function() {
-
-    game.border.scroll({
-        left: game.border.scrollLeft - 50,
-        behavior: 'smooth'
-    })
-}
-
-Game.prototype.scrollDown = function() {
-
-    game.border.scroll({
-        top: game.border.scrollTop + 50,
-        behavior: 'smooth'
-    })
-}
-
-Game.prototype.scrollRight = function() {
-
-    game.border.scroll({
-        left: game.border.scrollLeft + 50,
-        behavior: 'smooth'
-    })
 }
 
 Game.prototype.createGrid = function() {

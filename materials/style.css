@@ -252,13 +252,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .gameBorder {
-    position: absolute;
-    margin: auto;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    overflow: scroll;
+    margin: 5vh 5vw;
+    overflow: hidden;
     max-width: 90vw;
     max-height: 90vh;
     border-radius: 3px;
