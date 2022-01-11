@@ -76,8 +76,14 @@ Game.prototype.useHotkeys = function(event) {
 
 Game.prototype.createGrid = function() {
 
+    noise.seed(Math.random())
+
     for (let x = 0; x < gameWidth; x += gridSize) {
         for (let y = 0; y < gameHeight; y += gridSize) {
+
+            // noise.simplex2 and noise.perlin2 for 2d noise
+
+            var noiseResult = Math.abs(noise.simplex2(x / 100, y / 100))
 
             const terrainType = 'terrain'
 
