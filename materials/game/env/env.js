@@ -6,12 +6,15 @@ const FPS = 60
 
 const tickSpeed = 100
 
+// How fast the camera moves
+
+const cameraSpeed = 20
 //
 
 globalThis.game = undefined
 
-const gameWidth = 1000
-const gameHeight = 1000
+const gameWidth = 2000
+const gameHeight = 2000
 const gridSize = 30
 
 let ID = 0

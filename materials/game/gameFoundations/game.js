@@ -54,22 +54,22 @@ Game.prototype.useHotkeys = function(event) {
 
     if (key == 'w') {
         
-        game.offsetTop = Math.max(0, game.offsetTop + 10)
+        game.offsetTopSpeed = cameraSpeed
         return
     }
     if (key == 'a') {
 
-        game.offsetLeft = Math.max(0, game.offsetLeft + 10)
+        game.offsetLeftSpeed = cameraSpeed
         return
     }
     if (key == 's') {
 
-        game.offsetTop = Math.min(gameHeight, game.offsetTop - 10)
+        game.offsetTopSpeed = cameraSpeed * -1
         return
     }
     if (key == 'd') {
 
-        game.offsetLeft = Math.min(gameWidth, game.offsetLeft - 10)
+        game.offsetLeftSpeed = cameraSpeed * -1
         return
     }
 }

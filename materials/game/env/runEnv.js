@@ -2,8 +2,24 @@ function runEnv() {
 
     setInterval(updateGame, 1)
 
+    let tick = 0
+
     function updateGame() {
 
+        tick++
+
+        moveCamera()
+
+        function moveCamera() {
+
+            if (tick % 10 == 0) game.offsetLeftSpeed = 0
+            game.offsetLeft += game.offsetLeftSpeed
+
+            if (tick % 10 == 0) game.offsetTopSpeed = 0
+            game.offsetTop += game.offsetTopSpeed
+    
+            game.cm.translate(game.offsetLeftSpeed, game.offsetTopSpeed)
+        }
     }
 
     setInterval(updateSprites, 1)
@@ -20,11 +36,6 @@ function runEnv() {
         game.cm.clearRect(0, 0, gameWidth, gameHeight)
 
         //
-
-        game.offsetLeft = game.offsetLeftSpeed
-        game.offsetTop = game.offsetTopSpeed
-
-        game.cm.translate (game.offsetLeftSpeed, game.offsetLeftSpeed)
 
         // Restore the transform
 
