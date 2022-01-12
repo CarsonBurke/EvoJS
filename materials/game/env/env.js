@@ -21,17 +21,14 @@ let ID = 0
 
 const terrainTypes = {
     deepWater: {
-        threshold: 0.6,
+        threshold: 0.55,
     },
     water: {
         threshold: 0.5,
     },
     sand: {
-        threshold: 0.42,
+        threshold: 0.43,
     },
-/*     grass: {
-        threshold: 0.2,
-    }, */
     dirt: {
         threshold: 0,
     },

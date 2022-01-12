@@ -76,6 +76,8 @@ Game.prototype.useHotkeys = function(event) {
 
 Game.prototype.createGrid = function() {
 
+    const graph = []
+
     noise.seed(Math.random())
 
     for (let x = 0; x < gameWidth; x += gridSize) {
@@ -122,4 +124,10 @@ Game.prototype.createGrid = function() {
             }
         }
     }
+
+    game.graph = new Graph(graph/* [
+        [1,1,1,1],
+        [0,1,1,0],
+        [0,0,1,1]
+    ] */)
 }
