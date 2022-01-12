@@ -102,7 +102,24 @@ Game.prototype.createGrid = function() {
 
             // Create a new grid part based on the terrain type and position
 
-            new GridPart(x, y, terrainType)
+            const gridPart = new GridPart(x, y, terrainType)
+
+            //
+
+            gridPart.fertility = 0
+
+            if (terrainType != 'dirt') continue
+
+            //
+
+            gridPart.fertility = noiseResult
+
+            const grassChance = Math.random() * 1 + noiseResult * 2
+            
+            if (grassChance > 1) {
+                console.log(grassChance)
+                gridPart.image = document.getElementById('grass')
+            }
         }
     }
 }

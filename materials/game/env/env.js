@@ -29,25 +29,10 @@ const terrainTypes = {
     sand: {
         threshold: 0.4,
     },
-    grass: {
+/*     grass: {
         threshold: 0.2,
-    },
+    }, */
     dirt: {
         threshold: 0,
     },
-/*     dirt: {
-        threshold: 0.9,
-    },
-    grass: {
-        threshold: 0.6,
-    },
-    sand: {
-        threshold: 0.4,
-    },
-    water: {
-        threshold: 0.2,
-    },
-    deepWater: {
-        threshold: 0,
-    }, */
 }
