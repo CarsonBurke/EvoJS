@@ -27,7 +27,7 @@ const terrainTypes = {
         threshold: 0.5,
     },
     sand: {
-        threshold: 0.4,
+        threshold: 0.42,
     },
 /*     grass: {
         threshold: 0.2,

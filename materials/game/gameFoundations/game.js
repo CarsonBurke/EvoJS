@@ -93,7 +93,7 @@ Game.prototype.createGrid = function() {
 
                 const terrain = terrainTypes[type]
 
-                if (noiseResult > terrain.threshold) {
+                if (noiseResult >= terrain.threshold) {
 
                     terrainType = type
                     break
@@ -117,7 +117,7 @@ Game.prototype.createGrid = function() {
             const grassChance = Math.random() * 1 + noiseResult * 2
             
             if (grassChance > 1) {
-                console.log(grassChance)
+                
                 gridPart.image = document.getElementById('grass')
             }
         }
