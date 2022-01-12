@@ -15,24 +15,39 @@ globalThis.game = undefined
 
 const gameWidth = 1000
 const gameHeight = 1000
-const gridSize = 30
+const gridSize = 10
 
 let ID = 0
 
 const terrainTypes = {
     deepWater: {
-        threshold: 1,
+        threshold: 0.6,
     },
     water: {
-        threshold: 0.35,
+        threshold: 0.5,
     },
     sand: {
-        threshold: 0.3,
+        threshold: 0.4,
     },
     grass: {
-        threshold: 0.26,
-    },
-    dirt: {
         threshold: 0.2,
     },
+    dirt: {
+        threshold: 0,
+    },
+/*     dirt: {
+        threshold: 0.9,
+    },
+    grass: {
+        threshold: 0.6,
+    },
+    sand: {
+        threshold: 0.4,
+    },
+    water: {
+        threshold: 0.2,
+    },
+    deepWater: {
+        threshold: 0,
+    }, */
 }

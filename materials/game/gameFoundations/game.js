@@ -83,9 +83,24 @@ Game.prototype.createGrid = function() {
 
             // noise.simplex2 and noise.perlin2 for 2d noise
 
-            var noiseResult = Math.abs(noise.simplex2(x / 100, y / 100))
+            var noiseResult = Math.abs(noise.perlin2(x / 500, y / 500))
 
-            const terrainType = 'terrain'
+            //
+
+            let terrainType = 'deepWater'
+
+            for (const type in terrainTypes) {
+
+                const terrain = terrainTypes[type]
+
+                if (noiseResult > terrain.threshold) {
+
+                    terrainType = type
+                    break
+                } 
+            }
+
+            // Create a new grid part based on the terrain type and position
 
             new GridPart(x, y, terrainType)
         }
