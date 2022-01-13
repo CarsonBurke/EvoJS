@@ -92,3 +92,10 @@ GameObject.prototype.moveTo = function(targetPos) {
 
     return true
 }
+
+GameObject.prototype.attack = function(target) {
+
+    const gameObject = this
+
+    if (gameObject.moveTo(target.pos)) return false
+}
