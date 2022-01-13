@@ -59,7 +59,14 @@ function runEnv() {
 
         while (i < 4) {
 
-            if (human.moveTo(targets[i])) break
+            let worked = false
+
+            if(human.moveTo(targets[i])) worked = true
+            if(rabbit.moveTo(targets[i])) worked = true
+            if(wolf.moveTo(targets[i])) worked = true
+
+            if (worked) break
+
             i++
         }
     }
