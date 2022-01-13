@@ -43,6 +43,10 @@ Game.prototype.init = function() {
 
     game.cm.imageSmoothingEnabled = false
 
+    // Config font color
+
+    game.cm.fillStyle = 'white'
+
     //
 
     document.addEventListener('keydown', game.useHotkeys)
@@ -76,11 +80,14 @@ Game.prototype.useHotkeys = function(event) {
 
 Game.prototype.createGrid = function() {
 
-    const graph = []
-
     noise.seed(Math.random())
 
+    const graph = []
+
     for (let x = 0; x < gameWidth; x += gridSize) {
+
+        const graphRow = []
+
         for (let y = 0; y < gameHeight; y += gridSize) {
 
             // noise.simplex2 and noise.perlin2 for 2d noise
@@ -106,28 +113,44 @@ Game.prototype.createGrid = function() {
 
             const gridPart = new GridPart(x, y, terrainType)
 
-            //
+            function findFertility() {
 
-            gridPart.fertility = 0
+                // Set the fertility to a default 0
 
-            if (terrainType != 'dirt') continue
+                gridPart.fertility = 0
 
-            //
+                // Stop if terrain isn't dirt
 
-            gridPart.fertility = noiseResult
+                if (terrainType != 'dirt') return
 
-            const grassChance = Math.random() * 1 + noiseResult * 2
-            
-            if (grassChance > 1) {
+                // Otherwise set the fertility to noise result and randomly change the terrain to grass
+
+                gridPart.fertility = noiseResult
+
+                const grassChance = Math.random() * 1 + noiseResult * 2
                 
-                gridPart.image = document.getElementById('grass')
+                // If the dirt is randomly grass
+
+                if (grassChance > 1) {
+
+                    // Change gridPart's terrain type and image to match grass
+                    
+                    terrainType = 'grass'
+                    gridPart.image = document.getElementById('grass')
+                }
             }
+
+            // Find the terrain's fertility and change to grass if fertile enough
+
+            findFertility()
+
+            // Add the graphValue of the terrain to the graph row
+
+            graphRow.push(terrainTypes[terrainType].weight)
         }
+
+        graph.push(graphRow)
     }
 
-    game.graph = new Graph(graph/* [
-        [1,1,1,1],
-        [0,1,1,0],
-        [0,0,1,1]
-    ] */)
+    game.graph = new Graph(graph)
 }

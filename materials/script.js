@@ -6,4 +6,4 @@ game.createGrid()
 
 runEnv()
 
-new Human(0, 0)
+const human = new Human(0, 0)

@@ -1,30 +1,14 @@
 function runEnv() {
 
-    setInterval(updateGame, 1)
+    let i = 0
+
+    setInterval(updateGame, 10)
 
     let tick = 0
 
     function updateGame() {
 
         tick++
-
-        moveCamera()
-
-        function moveCamera() {
-
-            if (tick % 10 == 0) game.offsetLeftSpeed = 0
-            game.offsetLeft += game.offsetLeftSpeed
-
-            if (tick % 10 == 0) game.offsetTopSpeed = 0
-            game.offsetTop += game.offsetTopSpeed
-    
-            game.cm.translate(game.offsetLeftSpeed, game.offsetTopSpeed)
-        }
-    }
-
-    setInterval(updateSprites, 1)
-
-    function updateSprites() {
 
         // Store the current transformation matrix
 
@@ -49,6 +33,34 @@ function runEnv() {
 
                 object.draw()
             }
+        }
+
+        moveCamera()
+
+        function moveCamera() {
+
+            if (tick % 10 == 0) game.offsetLeftSpeed = 0
+            game.offsetLeft += game.offsetLeftSpeed
+
+            if (tick % 10 == 0) game.offsetTopSpeed = 0
+            game.offsetTop += game.offsetTopSpeed
+    
+            game.cm.translate(game.offsetLeftSpeed, game.offsetTopSpeed)
+        }
+
+        //
+
+        const targets = [
+            new Pos(900, 100, gridSize, gridSize),
+            new Pos(900, 900, gridSize, gridSize),
+            new Pos(100, 900, gridSize, gridSize),
+            new Pos(100, 100, gridSize, gridSize),
+        ]
+
+        while (i < 4) {
+
+            if (human.moveTo(targets[i])) break
+            i++
         }
     }
 }
