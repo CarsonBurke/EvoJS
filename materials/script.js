@@ -6,4 +6,7 @@ game.createGrid()
 
 runEnv()
 
-new Human(0, 0)
+const human = new Human(0, 0)
+
+const rabbit = new Prey(0, 0, 'rabbit')
+const wolf = new Predator(0, 0, 'wolf')

@@ -22,14 +22,22 @@ let ID = 0
 const terrainTypes = {
     deepWater: {
         threshold: 0.55,
+        weight: 100,
     },
     water: {
         threshold: 0.5,
+        weight: 3,
     },
     sand: {
         threshold: 0.43,
+        weight: 2,
     },
     dirt: {
         threshold: 0,
+        weight: 1,
     },
+    grass: {
+        threshold: 0,
+        weight: 1.5,
+    }
 }
