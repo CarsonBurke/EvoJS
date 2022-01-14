@@ -7,5 +7,7 @@ class Human extends GameObject {
         super('human', left, top, width, height, document.getElementById('human'))
 
         const human = this
+
+        human.resources = {}
     }
 }

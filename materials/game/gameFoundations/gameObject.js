@@ -93,6 +93,29 @@ GameObject.prototype.moveTo = function(targetPos) {
     return true
 }
 
+GameObject.prototype.breed = function() {
+
+    const gameObject = this
+
+    // Inform false if there isn't enough food
+
+    if (gameObject.resources.food < 5) return false
+
+    // 
+
+    let humanAmount = Math.random() * 5
+
+    while (humanAmount < 5) {
+
+        const child = new gameObject.constructor.name()
+        console.log(child)
+
+        
+        
+        humanAmount--
+    }
+}
+
 GameObject.prototype.attack = function(target) {
 
     const gameObject = this

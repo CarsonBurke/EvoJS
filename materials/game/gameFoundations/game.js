@@ -152,5 +152,7 @@ Game.prototype.createGrid = function() {
         graph.push(graphRow)
     }
 
-    game.graph = new Graph(graph)
+    game.graph = new Graph(graph, {
+        diagonal: true
+    })
 }
