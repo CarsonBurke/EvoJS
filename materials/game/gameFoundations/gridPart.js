@@ -16,11 +16,26 @@ GridPart.prototype.initializeResource = function() {
     
     if (gridPart.terrainType != 'dirt') return false
 
-    const growthChance = Math.random() * 1 + gridPart.fertility * 2
+    const growthChance = Math.random() * 1 + gridPart.fertility * 4
     
     // If the dirt is growable
 
     if (growthChance < 1) return false
+
+    let finalResourceType = 'grass'
+
+    const resourceTypeValue = Math.random()
+
+    for (const resourceType in fertileTerrainOptions) {
+
+        const resourceValues = resourceTypes[resourceType]
+
+        if (resourceTypeValue >= resourceValues.threshold) {
+
+            finalResourceType = resourceType
+            break
+        }
+    }
 
     const resourceTypeIndex = Math.floor(Math.random() * Object.keys(fertileTerrainOptions).length)
     
@@ -30,6 +45,6 @@ GridPart.prototype.initializeResource = function() {
 
     //
     
-    new Resource(gridPart.pos.left, gridPart.pos.top, resourceType)
+    new Resource(gridPart.pos.left, gridPart.pos.top, finalResourceType)
     return fertileTerrainOptions[resourceType].weight
 }

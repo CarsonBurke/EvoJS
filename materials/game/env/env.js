@@ -43,51 +43,59 @@ const terrainTypes = {
 }
 
 const resourceTypes = {
-    bushBush: {
+/*     bushBush: {
         amount: 3,
         width: gridSize,
         height: gridSize,
-    },
+        threshold: 0.4,
+    }, */
     grass: {
         width: gridSize,
         height: gridSize,
+        threshold: 0.4,
     },
     berryBush1: {
         amount: 3,
         width: gridSize,
         height: gridSize,
+        threshold: 0.35,
     },
     berryBush2: {
         amount: 3,
         width: gridSize,
         height: gridSize,
+        threshold: 0.3,
     },
     noBerryBush1: {
         amount: 0,
         width: gridSize,
         height: gridSize,
+        threshold: 0.25,
     },
     noBerryBush2: {
         amount: 0,
         width: gridSize,
         height: gridSize,
+        threshold: 0.15,
     },
     tree1: {
         amount: 5,
         width: gridSize,
         height: gridSize,
+        threshold: 0.05,
     },
     tree2: {
         amount: 5,
         width: gridSize,
         height: gridSize,
+        threshold: 0,
     }
 }
 
 const fertileTerrainOptions = {
-    bushBush: {
+/*     bushBush: {
         weight: 4,
-    },
+    }, */
     grass: {
         weight: 2,
     },
