@@ -25,7 +25,16 @@ function runEnv() {
 
         game.cm.restore()
 
+        for (const ID in game.objects.pos) {
+
+            const object = game.objects.pos[ID]
+
+            object.draw()
+        }
+
         for (const type in game.objects) {
+
+            if (type == 'pos') continue
 
             for (const ID in game.objects[type]) {
 
@@ -66,10 +75,10 @@ function runEnv() {
             if (i === 3) {
 
                 i = 0
-                break
             }
 
             i++
+            break
         }
     }
 }

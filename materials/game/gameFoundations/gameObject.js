@@ -72,7 +72,7 @@ GameObject.prototype.moveTo = function(targetPos) {
 
         // Visualize the text's weight
 
-        game.cm.fillText(pos.weight, pos.x * gridSize, pos.y * gridSize);
+        game.cm.fillText(pos.weight, pos.x * gridSize + gridSize / 2, pos.y * gridSize + gridSize / 2);
     }
 
     // Construct the first pos
@@ -110,7 +110,7 @@ GameObject.prototype.breed = function() {
         const child = new gameObject.constructor.name()
         console.log(child)
 
-        
+
         
         humanAmount--
     }

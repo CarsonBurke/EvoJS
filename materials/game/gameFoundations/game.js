@@ -43,9 +43,11 @@ Game.prototype.init = function() {
 
     game.cm.imageSmoothingEnabled = false
 
-    // Config font color
+    // Config font settings
 
     game.cm.fillStyle = 'white'
+    game.cm.textAlign = 'center'
+    game.cm.textBaseline = 'middle'
 
     //
 
@@ -94,7 +96,7 @@ Game.prototype.createGrid = function() {
 
             var noiseResult = Math.abs(noise.perlin2(x / 500, y / 500))
 
-            //
+            // Find the terrain type using the noise result and terrain thresholds
 
             let terrainType = 'deepWater'
 
@@ -111,42 +113,21 @@ Game.prototype.createGrid = function() {
 
             // Create a new grid part based on the terrain type and position
 
-            const gridPart = new GridPart(x, y, terrainType)
+            const gridPart = new GridPart(x, y, terrainType, noiseResult)
 
-            function findFertility() {
+            // 
 
-                // Set the fertility to a default 0
+            let weight = terrainTypes[terrainType].weight
 
-                gridPart.fertility = 0
+            //
 
-                // Stop if terrain isn't dirt
-
-                if (terrainType != 'dirt') return
-
-                // Otherwise set the fertility to noise result and randomly change the terrain to grass
-
-                gridPart.fertility = noiseResult
-
-                const grassChance = Math.random() * 1 + noiseResult * 2
-                
-                // If the dirt is randomly grass
-
-                if (grassChance > 1) {
-
-                    // Change gridPart's terrain type and image to match grass
-                    
-                    terrainType = 'grass'
-                    gridPart.image = document.getElementById('grass')
-                }
-            }
-
-            // Find the terrain's fertility and change to grass if fertile enough
-
-            findFertility()
+            const gridInitializeResourceResult = gridPart.initializeResource()
+            
+            if (gridInitializeResourceResult) weight = gridInitializeResourceResult
 
             // Add the graphValue of the terrain to the graph row
 
-            graphRow.push(terrainTypes[terrainType].weight)
+            graphRow.push(weight)
         }
 
         graph.push(graphRow)

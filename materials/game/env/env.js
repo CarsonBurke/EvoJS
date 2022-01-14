@@ -15,7 +15,7 @@ globalThis.game = undefined
 
 const gameWidth = 1000
 const gameHeight = 1000
-const gridSize = 10
+const gridSize = 20
 
 let ID = 0
 
@@ -26,11 +26,11 @@ const terrainTypes = {
     },
     water: {
         threshold: 0.5,
-        weight: 3,
+        weight: 4,
     },
     sand: {
         threshold: 0.43,
-        weight: 2,
+        weight: 3,
     },
     dirt: {
         threshold: 0,
@@ -38,6 +38,75 @@ const terrainTypes = {
     },
     grass: {
         threshold: 0,
-        weight: 1.5,
+        weight: 2,
+    }
+}
+
+const resourceTypes = {
+    bushBush: {
+        amount: 3,
+        width: gridSize,
+        height: gridSize,
+    },
+    grass: {
+        width: gridSize,
+        height: gridSize,
+    },
+    berryBush1: {
+        amount: 3,
+        width: gridSize,
+        height: gridSize,
+    },
+    berryBush2: {
+        amount: 3,
+        width: gridSize,
+        height: gridSize,
+    },
+    noBerryBush1: {
+        amount: 0,
+        width: gridSize,
+        height: gridSize,
+    },
+    noBerryBush2: {
+        amount: 0,
+        width: gridSize,
+        height: gridSize,
+    },
+    tree1: {
+        amount: 5,
+        width: gridSize,
+        height: gridSize,
+    },
+    tree2: {
+        amount: 5,
+        width: gridSize,
+        height: gridSize,
+    }
+}
+
+const fertileTerrainOptions = {
+    bushBush: {
+        weight: 4,
+    },
+    grass: {
+        weight: 2,
+    },
+    berryBush1: {
+        weight: 4,
+    },
+    berryBush2: {
+        weight: 4,
+    },
+    noBerryBush1: {
+        weight: 4,
+    },
+    noBerryBush2: {
+        weight: 4,
+    },
+    tree1: {
+        weight: 100,
+    },
+    tree2: {
+        weight: 100,
     }
 }
