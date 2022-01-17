@@ -101,18 +101,28 @@ GameObject.prototype.breed = function() {
 
     if (gameObject.resources.food < 5) return false
 
+    const animalClasses = {
+        Human,
+        Prey,
+        Predator
+    }
+
     // 
 
-    let humanAmount = Math.random() * 5
+    const humanAmount = Math.random() * 5
 
-    while (humanAmount < 5) {
+    let newHumanCount = 0
 
-        const child = new gameObject.constructor.name()
-        console.log(child)
+    while (newHumanCount < humanAmount) {
 
+        const child = new animalClasses[gameObject.constructor.name]()
+
+        child.pos.left = gameObject.pos.left
+        child.pos.top = gameObject.pos.top
 
         
-        humanAmount--
+        
+        newHumanCount++
     }
 }
 
@@ -121,4 +131,6 @@ GameObject.prototype.attack = function(target) {
     const gameObject = this
 
     if (gameObject.moveTo(target.pos)) return false
+
+
 }

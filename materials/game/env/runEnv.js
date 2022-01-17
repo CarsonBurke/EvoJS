@@ -2,7 +2,7 @@ function runEnv() {
 
     let i = 0
 
-    setInterval(updateGame, 10)
+    setInterval(updateGame, 1000)
 
     let tick = 0
 
@@ -59,7 +59,17 @@ function runEnv() {
 
         //
 
-        const targets = [
+        for (const ID in game.objects.human) {
+
+            const human = game.objects.human[ID]
+
+            const randomLeft = Math.floor(Math.random() * gameWidth) / gameWidth * gridSize
+            const randomTop = Math.floor(Math.random() * gameHeight) / gameHeight * gridSize
+            console.log(randomLeft, randomTop)
+            human.moveTo(new Pos(randomLeft, randomTop, gridSize, gridSize))
+        }
+
+        /* const targets = [
             new Pos(900, 100, gridSize, gridSize),
             new Pos(900, 900, gridSize, gridSize),
             new Pos(100, 900, gridSize, gridSize),
@@ -79,6 +89,8 @@ function runEnv() {
 
             i++
             break
-        }
+        } */
+
+        human.breed()
     }
 }
