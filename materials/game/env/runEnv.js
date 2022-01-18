@@ -2,7 +2,7 @@ function runEnv() {
 
     let i = 0
 
-    setInterval(updateGame, 1)
+    setInterval(updateGame, 100)
 
     let tick = 0
 
@@ -62,13 +62,19 @@ function runEnv() {
         for (const ID in game.objects.human) {
 
             const human = game.objects.human[ID]
-
+/* 
             const randomLeft = Math.floor(Math.random() * gameWidth / (gridSize)) * gridSize
             const randomTop = Math.floor(Math.random() * gameHeight / (gridSize)) * gridSize
             
             human.moveTo(new Pos(randomLeft, randomTop, gridSize, gridSize))
-        }
+ */
+            human.age()
 
-        human.breed()
+            human.breed(tick)
+
+            human.forage()
+
+            console.log(human.resources)
+        }
     }
 }

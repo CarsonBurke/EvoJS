@@ -54,3 +54,19 @@ Pos.prototype.isInside = function(otherPos) {
         return true
     }
 }
+
+Pos.prototype.sortGameObjectsByDistance = function(gameObjects) {
+
+    const pos = this
+
+    const positionsByDistance = gameObjects.sort((a, b) => pos.getDistance(a.pos) - pos.getDistance(b.pos))
+    return positionsByDistance
+}
+
+Pos.prototype.sortPositionsByDistance = function(positions) {
+
+    const pos = this
+
+    const positionsByDistance = positions.sort((a, b) => pos.getDistance(a) - pos.getDistance(b))
+    return positionsByDistance
+}

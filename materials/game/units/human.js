@@ -8,7 +8,7 @@ class Human extends GameObject {
 
         const human = this
 
-        human.health = 10
+        human.health = Math.random() * 10
 
         human.resources = {}
 
@@ -17,6 +17,8 @@ class Human extends GameObject {
             human.resources[resourceType] = 0
         }
 
-        human.resources.food = 10
+        human.resources.food = 5
+
+        human.lastBreed = 0
     }
 }

@@ -99,13 +99,17 @@ GameObject.prototype.moveTo = function(targetPos) {
     return true
 }
 
-GameObject.prototype.breed = function() {
+GameObject.prototype.breed = function(tick) {
 
     const gameObject = this
 
     // Inform false if there isn't enough food
     
     if (gameObject.resources.food < 5) return false
+
+    // Stpo if breeding is on cooldown
+
+    if (gameObject.lastBreed - tick > 0) return false
 
     const animalClasses = {
         Human,
@@ -126,10 +130,12 @@ GameObject.prototype.breed = function() {
         child.pos.left = gameObject.pos.left
         child.pos.top = gameObject.pos.top
 
-        
+        child.lastBreed = Math.random() * 2000
         
         newHumanCount++
     }
+
+    gameObject.lastBreed = tick + 1000
 
     gameObject.resources.food--
 }
@@ -143,11 +149,27 @@ GameObject.prototype.attack = function(target) {
 
 }
 
+GameObject.prototype.forage = function() {
+
+    const gameObject = this
+
+    const bushes = Object.values(game.objects.resource).filter(terrainResource => terrainResource.terrainResourceType == 'berryBush1' || terrainResource.terrainResourceType == 'berryBush2')
+
+    const closestBush = gameObject.pos.sortGameObjectsByDistance(bushes)[0]
+
+    if (!closestBush) return false
+
+    if (gameObject.moveTo(closestBush.pos)) return false
+
+    closestBush.harvest(gameObject)
+    return true
+}
+
 GameObject.prototype.age = function() {
 
     const gameObject = this
 
-    gameObject.health -= 0.1
+    gameObject.health -= 0.01
 
-    if (gameObject.health == 0) gameObject.delete()
+    if (gameObject.health <= 0) gameObject.delete()
 }
