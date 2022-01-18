@@ -26,13 +26,13 @@ GridPart.prototype.initializeResource = function() {
 
     const resourceTypeValue = Math.random()
 
-    for (const resourceType in fertileTerrainOptions) {
+    for (const terrainResourceType in fertileTerrainOptions) {
 
-        const resourceValues = resourceTypes[resourceType]
+        const resourceValues = terrainResourceTypes[terrainResourceType]
 
         if (resourceTypeValue >= resourceValues.threshold) {
 
-            finalResourceType = resourceType
+            finalResourceType = terrainResourceType
             break
         }
     }
@@ -41,10 +41,10 @@ GridPart.prototype.initializeResource = function() {
     
     //
 
-    const resourceType = Object.keys(resourceTypes)[resourceTypeIndex]
+    const resourceType = Object.keys(terrainResourceTypes)[resourceTypeIndex]
 
     //
     
-    new Resource(gridPart.pos.left, gridPart.pos.top, finalResourceType)
+    new TerrainResource(gridPart.pos.left, gridPart.pos.top, finalResourceType)
     return fertileTerrainOptions[resourceType].weight
 }

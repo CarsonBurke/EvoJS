@@ -21,10 +21,16 @@ class GameObject {
 
 GameObject.prototype.draw = function() {
 
-
     const gameObject = this
 
     game.cm.drawImage(gameObject.image, gameObject.pos.left, gameObject.pos.top, gameObject.width, gameObject.height)
+}
+
+GameObject.prototype.delete = function() {
+
+    const gameObject = this
+
+    delete game.objects[gameObject.type][gameObject.id]
 }
 
 GameObject.prototype.moveTo = function(targetPos) {
@@ -98,7 +104,7 @@ GameObject.prototype.breed = function() {
     const gameObject = this
 
     // Inform false if there isn't enough food
-
+    
     if (gameObject.resources.food < 5) return false
 
     const animalClasses = {
@@ -124,6 +130,8 @@ GameObject.prototype.breed = function() {
         
         newHumanCount++
     }
+
+    gameObject.resources.food--
 }
 
 GameObject.prototype.attack = function(target) {
@@ -133,4 +141,13 @@ GameObject.prototype.attack = function(target) {
     if (gameObject.moveTo(target.pos)) return false
 
 
+}
+
+GameObject.prototype.age = function() {
+
+    const gameObject = this
+
+    gameObject.health -= 0.1
+
+    if (gameObject.health == 0) gameObject.delete()
 }

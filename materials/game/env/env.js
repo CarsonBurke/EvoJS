@@ -19,6 +19,21 @@ const gridSize = 20
 
 let ID = 0
 
+const resourceTypes = {
+    food: {
+
+    },
+    water: {
+
+    },
+    wood: {
+
+    },
+    stone: {
+
+    },
+}
+
 const terrainTypes = {
     deepWater: {
         threshold: 0.55,
@@ -42,7 +57,7 @@ const terrainTypes = {
     }
 }
 
-const resourceTypes = {
+const terrainResourceTypes = {
 /*     bushBush: {
         amount: 3,
         width: gridSize,

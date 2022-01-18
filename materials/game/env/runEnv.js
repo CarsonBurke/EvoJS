@@ -2,7 +2,7 @@ function runEnv() {
 
     let i = 0
 
-    setInterval(updateGame, 1000)
+    setInterval(updateGame, 1)
 
     let tick = 0
 
@@ -63,33 +63,11 @@ function runEnv() {
 
             const human = game.objects.human[ID]
 
-            const randomLeft = Math.floor(Math.random() * gameWidth) / gameWidth * gridSize
-            const randomTop = Math.floor(Math.random() * gameHeight) / gameHeight * gridSize
-            console.log(randomLeft, randomTop)
+            const randomLeft = Math.floor(Math.random() * gameWidth / (gridSize)) * gridSize
+            const randomTop = Math.floor(Math.random() * gameHeight / (gridSize)) * gridSize
+            
             human.moveTo(new Pos(randomLeft, randomTop, gridSize, gridSize))
         }
-
-        /* const targets = [
-            new Pos(900, 100, gridSize, gridSize),
-            new Pos(900, 900, gridSize, gridSize),
-            new Pos(100, 900, gridSize, gridSize),
-            new Pos(100, 100, gridSize, gridSize),
-        ]
-
-        while (i < 4) {
-
-            human.moveTo(targets[i])
-            rabbit.moveTo(targets[i])
-            wolf.moveTo(targets[i])
-
-            if (i === 3) {
-
-                i = 0
-            }
-
-            i++
-            break
-        } */
 
         human.breed()
     }

@@ -8,6 +8,15 @@ class Human extends GameObject {
 
         const human = this
 
+        human.health = 10
+
         human.resources = {}
+
+        for (const resourceType in resourceTypes) {
+
+            human.resources[resourceType] = 0
+        }
+
+        human.resources.food = 10
     }
 }
