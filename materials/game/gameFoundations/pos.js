@@ -21,15 +21,12 @@ class Pos {
 
     // Configure positions
 
-    const x1 = pos.x
-    const y1 = pos.y
-
-    const x2 = otherPos.x
-    const y2 = otherPos.y
+    const leftDifference = pos.left - otherPos.left
+    const topDifference = pos.top - otherPos.top
 
     // Find range using pythagorus and inform it
 
-    const range = Math.sqrt((x1 - x2) * (y1 - y2))
+    const range = Math.sqrt(Math.pow(leftDifference, 2) + Math.pow(topDifference, 2))
     return range
 }
 

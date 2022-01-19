@@ -1,8 +1,6 @@
 function runEnv() {
-
-    let i = 0
-
-    setInterval(updateGame, 100)
+    
+    setInterval(updateGame, 1)
 
     let tick = 0
 
