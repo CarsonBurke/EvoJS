@@ -144,8 +144,8 @@ GameObject.prototype.hunt = function(type) {
 
     const gameObject = this
 
-    const creaturesOfType = game.objects[type]
-
+    const creaturesOfType = Object.values(game.objects[type])
+    
     const closestCreatureOfType = gameObject.pos.sortGameObjectsByDistance(creaturesOfType)[0]
 
     if (!closestCreatureOfType) return false

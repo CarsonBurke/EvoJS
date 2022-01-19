@@ -1,6 +1,6 @@
 function runEnv() {
 
-    setInterval(updateGame, 1)
+    setInterval(updateGame, 100)
 
     let tick = 0
 
@@ -65,8 +65,6 @@ function runEnv() {
             human.breed(tick)
 
             human.forage()
-
-            console.log(human.resources)
         }
 
         for (const ID in game.objects.predator) {

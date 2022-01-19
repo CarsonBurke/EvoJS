@@ -4,8 +4,10 @@ class Prey extends GameObject {
         const width = gridSize
         const height = gridSize
 
-        super(preyType, left, top, width, height, document.getElementById(preyType))
+        super('prey', left, top, width, height, document.getElementById(preyType))
 
         const prey = this
+
+        prey.preyType = preyType
     }
 }

@@ -4,8 +4,10 @@ class Predator extends GameObject {
         const width = gridSize
         const height = gridSize
 
-        super(predatorType, left, top, width, height, document.getElementById(predatorType))
+        super('predator', left, top, width, height, document.getElementById(predatorType))
 
         const predator = this
+
+        predator.predatorType = predatorType
     }
 }
