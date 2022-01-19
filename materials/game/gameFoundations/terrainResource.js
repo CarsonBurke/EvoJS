@@ -24,6 +24,13 @@ TerrainResource.prototype.harvest = function(harvester) {
     harvester.resources[terrainResource.resourceType]++
 
     terrainResource.amount--
+}
+
+TerrainResource.prototype.updateStats = function() {
+
+    const terrainResource = this
+
+    terrainResource.amount += 0.1
 
     if (terrainResource.amount <= 0) terrainResource.delete()
 }

@@ -55,6 +55,13 @@ function runEnv() {
             game.cm.translate(game.offsetLeftSpeed, game.offsetTopSpeed)
         }
 
+        for (const ID in game.objects.resource) {
+
+            const terrainResource = game.objects.resource[ID]
+
+            terrainResource.updateStats()
+        }
+
         //
 
         for (const ID in game.objects.human) {

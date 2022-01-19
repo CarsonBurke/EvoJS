@@ -206,6 +206,9 @@ GameObject.prototype.updateStats = function() {
     const gameObject = this
 
     gameObject.health -= 0.01
+
+    if (!gameObject.resources.food) gameObject.health -= 0.1
+
     gameObject.water -= 0.1
     gameObject.food -= 0.1
 
