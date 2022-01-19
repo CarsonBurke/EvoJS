@@ -140,13 +140,33 @@ GameObject.prototype.breed = function(tick) {
     gameObject.resources.food--
 }
 
+GameObject.prototype.hunt = function(type) {
+
+    const gameObject = this
+
+    const creaturesOfType = game.objects[type]
+
+    const closestCreatureOfType = gameObject.pos.sortGameObjectsByDistance(creaturesOfType)[0]
+
+    if (!closestCreatureOfType) return false
+
+    if (gameObject.moveTo(closestCreatureOfType.pos)) return false
+
+    gameObject.attack(closestCreatureOfType)
+    return true
+}
+
 GameObject.prototype.attack = function(target) {
 
     const gameObject = this
 
-    if (gameObject.moveTo(target.pos)) return false
+    target.health -= 1
 
+    if (target.health > 0) return false
 
+    target.delete()
+
+    gameObject.food += 30
 }
 
 GameObject.prototype.forage = function() {

@@ -1,5 +1,5 @@
 function runEnv() {
-    
+
     setInterval(updateGame, 1)
 
     let tick = 0
@@ -60,12 +60,6 @@ function runEnv() {
         for (const ID in game.objects.human) {
 
             const human = game.objects.human[ID]
-/* 
-            const randomLeft = Math.floor(Math.random() * gameWidth / (gridSize)) * gridSize
-            const randomTop = Math.floor(Math.random() * gameHeight / (gridSize)) * gridSize
-            
-            human.moveTo(new Pos(randomLeft, randomTop, gridSize, gridSize))
- */
             human.age()
 
             human.breed(tick)
@@ -73,6 +67,13 @@ function runEnv() {
             human.forage()
 
             console.log(human.resources)
+        }
+
+        for (const ID in game.objects.predator) {
+
+            const predator = game.objects.predator[ID]
+            
+            predator.hunt('human')
         }
     }
 }
