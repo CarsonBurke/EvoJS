@@ -1,6 +1,6 @@
 function runEnv() {
 
-    setInterval(updateGame, 100)
+    setInterval(updateGame, 1)
 
     let tick = 0
 
@@ -60,9 +60,16 @@ function runEnv() {
         for (const ID in game.objects.human) {
 
             const human = game.objects.human[ID]
-            human.age()
+
+            human.updateStats()
 
             human.breed(tick)
+
+            if (human.resources.water < 10) {
+
+                human.drink()
+                continue
+            }
 
             human.forage()
         }
@@ -70,8 +77,10 @@ function runEnv() {
         for (const ID in game.objects.predator) {
 
             const predator = game.objects.predator[ID]
+
+            predator.updateStats()
             
-            predator.hunt('human')
+            predator.hunt('prey')
         }
     }
 }

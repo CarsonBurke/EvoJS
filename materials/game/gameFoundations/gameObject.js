@@ -169,6 +169,22 @@ GameObject.prototype.attack = function(target) {
     gameObject.food += 30
 }
 
+GameObject.prototype.drink = function() {
+
+    const gameObject = this
+
+    const water = Object.values(game.objects.pos).filter(pos => pos.terrainType == 'water')
+
+    const closestWater = gameObject.pos.sortGameObjectsByDistance(water)[0]
+
+    if (!closestWater) return false
+
+    if (gameObject.moveTo(closestWater.pos)) return false
+
+    gameObject.resources.water++
+    return true
+}
+
 GameObject.prototype.forage = function() {
 
     const gameObject = this
@@ -185,11 +201,13 @@ GameObject.prototype.forage = function() {
     return true
 }
 
-GameObject.prototype.age = function() {
+GameObject.prototype.updateStats = function() {
 
     const gameObject = this
 
     gameObject.health -= 0.01
+    gameObject.water -= 0.1
+    gameObject.food -= 0.1
 
     if (gameObject.health <= 0) gameObject.delete()
 }
