@@ -30,7 +30,23 @@ TerrainResource.prototype.updateStats = function() {
 
     const terrainResource = this
 
-    terrainResource.amount += 0.1
+    if (terrainResource.amount <= 0) {
 
-    if (terrainResource.amount <= 0) terrainResource.delete()
+        if (terrainResourceTypes[terrainResource.terrainResourceType].depletedType) {
+
+            terrainResource.terrainResourceType = terrainResourceTypes[terrainResource.terrainResourceType].depletedType
+
+            terrainResource.image = document.getElementById(terrainResource.terrainResourceType)
+        }
+
+        const randomChance = Math.random() * 500
+
+        if (randomChance > 1) return
+
+        terrainResource.terrainResourceType = terrainResourceTypes[terrainResource.terrainResourceType].replenishedType
+
+        terrainResource.image = document.getElementById(terrainResource.terrainResourceType)
+
+        terrainResource.amount = terrainResourceTypes[terrainResource.terrainResourceType].amount
+    }
 }

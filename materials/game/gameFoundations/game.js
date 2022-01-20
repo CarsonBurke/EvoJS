@@ -10,6 +10,8 @@ class Game {
         game.offsetTop = 0
 
         game.objects = {}
+
+        game.baseGraph = []
     }
 }
 
@@ -84,8 +86,6 @@ Game.prototype.createGrid = function() {
 
     noise.seed(Math.random())
 
-    const graph = []
-
     for (let x = 0; x < gameWidth; x += gridSize) {
 
         const graphRow = []
@@ -130,10 +130,6 @@ Game.prototype.createGrid = function() {
             graphRow.push(weight)
         }
 
-        graph.push(graphRow)
+        game.baseGraph.push(graphRow)
     }
-
-    game.graph = new Graph(graph, {
-        diagonal: true
-    })
 }

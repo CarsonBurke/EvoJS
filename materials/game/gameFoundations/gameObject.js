@@ -150,7 +150,11 @@ GameObject.prototype.hunt = function(type) {
 
     if (!closestCreatureOfType) return false
 
-    if (gameObject.moveTo(closestCreatureOfType.pos)) return false
+    if (gameObject.pos.getDistance(closestCreatureOfType.pos) > gridSize * 1.5) {
+
+        gameObject.moveTo(closestCreatureOfType.pos) 
+        return false
+    }
 
     gameObject.attack(closestCreatureOfType)
     return true
@@ -179,7 +183,11 @@ GameObject.prototype.drink = function() {
 
     if (!closestWater) return false
 
-    if (gameObject.moveTo(closestWater.pos)) return false
+    if (gameObject.pos.getDistance(closestWater.pos) > gridSize * 1.5) {
+
+        gameObject.moveTo(closestWater.pos) 
+        return false
+    }
 
     gameObject.resources.water++
     return true
@@ -189,13 +197,17 @@ GameObject.prototype.forage = function() {
 
     const gameObject = this
 
-    const bushes = Object.values(game.objects.resource).filter(terrainResource => terrainResource.terrainResourceType == 'berryBush1' || terrainResource.terrainResourceType == 'berryBush2')
+    const bushes = Object.values(game.objects.resource).filter(terrainResource => (terrainResource.terrainResourceType == 'berryBush1' || terrainResource.terrainResourceType == 'berryBush2') && terrainResource.amount > 0)
 
     const closestBush = gameObject.pos.sortGameObjectsByDistance(bushes)[0]
 
     if (!closestBush) return false
 
-    if (gameObject.moveTo(closestBush.pos)) return false
+    if (gameObject.pos.getDistance(closestBush.pos) > gridSize * 1.5) {
+
+        gameObject.moveTo(closestBush.pos) 
+        return false
+    }
 
     closestBush.harvest(gameObject)
     return true

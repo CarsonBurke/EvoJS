@@ -55,12 +55,35 @@ function runEnv() {
             game.cm.translate(game.offsetLeftSpeed, game.offsetTopSpeed)
         }
 
+
+        for (const ID in game.objects.gridPart) {
+
+            const gridPart = game.objects.pos[ID]
+
+            game.baseGraph[gridPart.pos.left / gridSize][gridPart.pos.top / gridSize] = terrainTypes[gridPart.terrainType].weight
+        }
+
         for (const ID in game.objects.resource) {
 
             const terrainResource = game.objects.resource[ID]
 
             terrainResource.updateStats()
+
+            game.baseGraph[terrainResource.pos.left / gridSize][terrainResource.pos.top / gridSize] = fertileTerrainOptions[terrainResource.terrainResourceType].weight
         }
+        
+        //
+
+        for (const ID in game.objects.human) {
+
+            const human = game.objects.human[ID]
+
+            game.baseGraph[human.pos.left / gridSize][human.pos.top / gridSize] = 100
+        }
+
+        game.graph = new Graph(game.baseGraph, {
+            diagonal: true
+        })
 
         //
 
