@@ -19,7 +19,7 @@ class Human extends GameObject {
             human.resources[resourceType] = 0
         }
 
-        human.resources.food = 5
+        human.resources.food = 1
 
         human.lastBreed = 0
     }

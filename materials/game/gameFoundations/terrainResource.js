@@ -39,7 +39,7 @@ TerrainResource.prototype.updateStats = function() {
             terrainResource.image = document.getElementById(terrainResource.terrainResourceType)
         }
 
-        const randomChance = Math.random() * 500
+        const randomChance = Math.random() * 800
 
         if (randomChance > 1) return
 

@@ -56,10 +56,10 @@ function runEnv() {
         }
 
 
-        for (const ID in game.objects.gridPart) {
+        for (const ID in game.objects.pos) {
 
             const gridPart = game.objects.pos[ID]
-
+            
             game.baseGraph[gridPart.pos.left / gridSize][gridPart.pos.top / gridSize] = terrainTypes[gridPart.terrainType].weight
         }
 
@@ -74,12 +74,18 @@ function runEnv() {
         
         //
 
+        let i = 0
+
         for (const ID in game.objects.human) {
+
+            i++
 
             const human = game.objects.human[ID]
 
             game.baseGraph[human.pos.left / gridSize][human.pos.top / gridSize] = 100
         }
+
+        console.log('humans: ' + i)
 
         game.graph = new Graph(game.baseGraph, {
             diagonal: true

@@ -105,7 +105,7 @@ GameObject.prototype.breed = function(tick) {
 
     // Inform false if there isn't enough food
     
-    if (gameObject.resources.food < 5) return false
+    if (gameObject.resources.food < breedingCost) return false
 
     // Stpo if breeding is on cooldown
 
@@ -119,7 +119,7 @@ GameObject.prototype.breed = function(tick) {
 
     // 
 
-    const humanAmount = Math.random() * 5
+    const humanAmount = Math.random() * 3
 
     let newHumanCount = 0
 
@@ -130,14 +130,12 @@ GameObject.prototype.breed = function(tick) {
         child.pos.left = gameObject.pos.left
         child.pos.top = gameObject.pos.top
 
-        child.lastBreed = Math.random() * 2000
+        child.lastBreed = tick + Math.random() * 800
         
         newHumanCount++
     }
 
-    gameObject.lastBreed = tick + 1000
-
-    gameObject.resources.food--
+    gameObject.resources.food -= breedingCost
 }
 
 GameObject.prototype.hunt = function(type) {
@@ -185,7 +183,7 @@ GameObject.prototype.drink = function() {
 
     if (gameObject.pos.getDistance(closestWater.pos) > gridSize * 1.5) {
 
-        gameObject.moveTo(closestWater.pos) 
+        gameObject.moveTo(closestWater.pos)
         return false
     }
 

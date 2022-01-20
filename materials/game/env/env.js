@@ -17,6 +17,8 @@ const gameWidth = 1000
 const gameHeight = 1000
 const gridSize = 20
 
+const breedingCost = 20
+
 let ID = 0
 
 const resourceTypes = {
@@ -59,7 +61,7 @@ const terrainTypes = {
 
 const terrainResourceTypes = {
 /*     bushBush: {
-        amount: 3,
+        amount: 0,
         width: gridSize,
         height: gridSize,
         threshold: 0.4,
