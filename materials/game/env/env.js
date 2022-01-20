@@ -69,18 +69,18 @@ const terrainResourceTypes = {
     grass: {
         width: gridSize,
         height: gridSize,
-        threshold: 0.3,
+        threshold: 0.2,
     },
     berryBush1: {
-        amount: 5,
+        amount: 12,
         width: gridSize,
         height: gridSize,
-        threshold: 0.2,
+        threshold: 0.15,
         resourceType: 'food',
         depletedType: 'noBerryBush1'
     },
     berryBush2: {
-        amount: 5,
+        amount: 12,
         width: gridSize,
         height: gridSize,
         threshold: 0.1,

@@ -1,8 +1,24 @@
 function runEnv() {
 
+    const inputs = [
+        { name: 'X position', value: 0 },
+        { name: 'Y position', value: 0 },
+        { name: 'Food count', value: 0 },
+        { name: 'Water count', value: 0 },
+    ]
+    
+    const outputs = [
+        { name: 'Forage' },
+        { name: 'Drink' },
+        { name: 'Hunt' },
+        { name: 'Breed' },
+    ]
+
+    //
+
     let humansMax = 0
 
-    setInterval(updateGame, 100)
+    setInterval(updateGame, 1)
 
     let tick = 0
 
