@@ -264,3 +264,15 @@ body::-webkit-scrollbar-thumb {
     width: 0;
     height: 0;
 }
+
+.displayParent {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.displayChild {
+    display: flex;
+    gap: 5px;
+}

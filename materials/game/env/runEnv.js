@@ -1,12 +1,16 @@
 function runEnv() {
 
-    setInterval(updateGame, 1)
+    let humansMax = 0
+
+    setInterval(updateGame, 100)
 
     let tick = 0
 
     function updateGame() {
 
         tick++
+
+        //
 
         // Store the current transformation matrix
 
@@ -74,18 +78,12 @@ function runEnv() {
         
         //
 
-        let i = 0
-
         for (const ID in game.objects.human) {
-
-            i++
 
             const human = game.objects.human[ID]
 
             game.baseGraph[human.pos.left / gridSize][human.pos.top / gridSize] = 100
         }
-
-        console.log('humans: ' + i)
 
         game.graph = new Graph(game.baseGraph, {
             diagonal: true
@@ -93,9 +91,13 @@ function runEnv() {
 
         //
 
+        let humanCount = 0
+
         for (const ID in game.objects.human) {
 
             const human = game.objects.human[ID]
+
+            humanCount++
 
             human.updateStats()
 
@@ -117,6 +119,20 @@ function runEnv() {
             predator.updateStats()
             
             predator.hunt('prey')
+        }
+
+        //
+
+        if (humanCount > humansMax) humansMax = humanCount
+
+        const displayStats = {
+            humanCount,
+            humansMax
+        }
+
+        for (const displayStatName in displayStats) {
+            
+            document.getElementById(displayStatName).innerText = displayStats[displayStatName]
         }
     }
 }
