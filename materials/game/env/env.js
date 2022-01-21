@@ -17,8 +17,6 @@ const gameWidth = 1000
 const gameHeight = 1000
 const gridSize = 20
 
-const breedingCost = 20
-
 let ID = 0
 
 const resourceTypes = {
@@ -72,7 +70,7 @@ const terrainResourceTypes = {
         threshold: 0.2,
     },
     berryBush1: {
-        amount: 12,
+        amount: 6,
         width: gridSize,
         height: gridSize,
         threshold: 0.15,
@@ -80,7 +78,7 @@ const terrainResourceTypes = {
         depletedType: 'noBerryBush1'
     },
     berryBush2: {
-        amount: 12,
+        amount: 6,
         width: gridSize,
         height: gridSize,
         threshold: 0.1,

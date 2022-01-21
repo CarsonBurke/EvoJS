@@ -284,7 +284,12 @@ body::-webkit-scrollbar-thumb {
     right: 100px;
     top: 10px;
     display: flex;
+    opacity: 0;
     pointer-events: none;
+}
+
+.visualsParentShow {
+    opacity: 1;
 }
 
 .layerVisual {

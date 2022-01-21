@@ -4,9 +4,9 @@ function runEnv() {
 
     let humansMax = 0
 
-    setInterval(updateGame, 1)
-
     let tick = 0
+
+    setInterval(updateGame, 1)
 
     function updateGame() {
 
@@ -117,15 +117,12 @@ function runEnv() {
 
             if (!human.network) human.createNetwork(inputs, outputs)
 
-
             human.network.forwardPropagate(inputs)
 
-            human.network.updateVisuals()
-
-            human.updateStats()
+            human.network.visualsParent.classList.remove('visualsParentShow')
 
             // Find last layer
-
+            
             const lastLayer = human.network.layers[Object.keys(human.network.layers).length - 1]
 
             // Track iterations and loop through output perceptrons
@@ -163,22 +160,36 @@ function runEnv() {
                     }
                 }
             }
+
+            human.updateStats()
         }
 
-        for (const ID in game.objects.predator) {
+        const humansByFood = Object.values(game.objects.human).sort((a, b) => a.resources.food - b.resources.food)
+
+        const humanWithMostFood = humansByFood[humansByFood.length - 1]
+        
+        if (humanWithMostFood) {
+
+            humanWithMostFood.network.updateVisuals()
+
+            humanWithMostFood.network.visualsParent.classList.add('visualsParentShow')
+        }
+
+        /* for (const ID in game.objects.predator) {
 
             const predator = game.objects.predator[ID]
 
             predator.updateStats()
             
             predator.hunt('prey')
-        }
+        } */
 
         //
 
         if (humanCount > humansMax) humansMax = humanCount
 
         const displayStats = {
+            tick,
             humanCount,
             humansMax
         }
