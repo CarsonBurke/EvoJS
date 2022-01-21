@@ -102,8 +102,8 @@ function runEnv() {
             humanCount++
 
             const inputs = [
-                { name: 'X position', value: human.pos.left },
-                { name: 'Y position', value: human.pos.top },
+                /* { name: 'X position', value: human.pos.left },
+                { name: 'Y position', value: human.pos.top }, */
                 { name: 'Food count', value: human.resources.food },
                 { name: 'Water count', value: human.resources.water },
             ]
@@ -164,7 +164,7 @@ function runEnv() {
             human.updateStats()
         }
 
-        const humansByFood = Object.values(game.objects.human).sort((a, b) => a.resources.food - b.resources.food)
+        const humansByFood = Object.values(game.objects.human).sort((a, b) => (a.resources.food + a.resources.water) - (b.resources.food + b.resources.water))
 
         const humanWithMostFood = humansByFood[humansByFood.length - 1]
         
