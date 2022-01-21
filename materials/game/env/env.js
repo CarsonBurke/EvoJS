@@ -70,7 +70,7 @@ const terrainResourceTypes = {
         threshold: 0.2,
     },
     berryBush1: {
-        amount: 6,
+        amount: 10,
         width: gridSize,
         height: gridSize,
         threshold: 0.15,
@@ -78,7 +78,7 @@ const terrainResourceTypes = {
         depletedType: 'noBerryBush1'
     },
     berryBush2: {
-        amount: 6,
+        amount: 10,
         width: gridSize,
         height: gridSize,
         threshold: 0.1,
