@@ -6,12 +6,14 @@ game.createGrid()
 
 runEnv()
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 50; i++) {
 
     const left = Math.floor(Math.random() * gameWidth / gridSize) * gridSize
     const top = Math.floor(Math.random() * gameHeight / gridSize) * gridSize
 
-    new Human(left, top)
+    const human = new Human(left, top)
+
+    human.lastBreed = Math.random() * 800
 }
 
 const rabbit = new Prey(100, 100, 'rabbit')

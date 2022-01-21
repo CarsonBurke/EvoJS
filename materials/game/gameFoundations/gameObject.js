@@ -30,6 +30,8 @@ GameObject.prototype.delete = function() {
 
     const gameObject = this
 
+    if (gameObject.network) gameObject.network.visualsParent.remove()
+
     delete game.objects[gameObject.type][gameObject.id]
 }
 
@@ -103,10 +105,6 @@ GameObject.prototype.breed = function(tick, inputs, outputs) {
 
     const gameObject = this
 
-    // Inform false if there isn't enough food
-    
-    if (gameObject.resources.food < breedingCost) return false
-
     // Stpo if breeding is on cooldown
 
     if (gameObject.lastBreed - tick > 0) return false
@@ -136,7 +134,7 @@ GameObject.prototype.breed = function(tick, inputs, outputs) {
         newHumanCount++
     }
 
-    gameObject.resources.food -= breedingCost
+    gameObject.lastBreed = tick + childAmount * 500
 }
 
 GameObject.prototype.hunt = function(type) {
@@ -218,10 +216,11 @@ GameObject.prototype.updateStats = function() {
 
     gameObject.health -= 0.01
 
-    if (!gameObject.resources.food) gameObject.health -= 0.1
+    if (gameObject.resources.food <= 0) gameObject.health -= 0.01
+    if (gameObject.resources.water <= 0) gameObject.health -= 0.01
 
-    gameObject.water -= 0.1
-    gameObject.food -= 0.1
+    gameObject.resources.water -= 0.1
+    gameObject.resources.food -= 0.1
 
     if (gameObject.health <= 0) gameObject.delete()
 }
