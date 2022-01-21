@@ -1,19 +1,5 @@
 function runEnv() {
 
-    const inputs = [
-        { name: 'X position', value: 0 },
-        { name: 'Y position', value: 0 },
-        { name: 'Food count', value: 0 },
-        { name: 'Water count', value: 0 },
-    ]
-    
-    const outputs = [
-        { name: 'Forage' },
-        { name: 'Drink' },
-        { name: 'Hunt' },
-        { name: 'Breed' },
-    ]
-
     //
 
     let humansMax = 0
@@ -115,17 +101,68 @@ function runEnv() {
 
             humanCount++
 
+            const inputs = [
+                { name: 'X position', value: human.pos.left },
+                { name: 'Y position', value: human.pos.top },
+                { name: 'Food count', value: human.resources.food },
+                { name: 'Water count', value: human.resources.water },
+            ]
+            
+            const outputs = [
+                { name: 'Breed' },
+                { name: 'Forage' },
+                { name: 'Drink' },
+                /* { name: 'Hunt' }, */
+            ]
+
+            if (!human.network) human.createNetwork(inputs, outputs)
+
+
+            human.network.forwardPropagate(inputs)
+
+            human.network.updateVisuals()
+
             human.updateStats()
 
-            human.breed(tick)
+            // Find last layer
 
-            if (human.resources.water < 10) {
+            const lastLayer = human.network.layers[Object.keys(human.network.layers).length - 1]
 
-                human.drink()
-                continue
+            // Track iterations and loop through output perceptrons
+
+            let i = -1
+
+            for (const perceptronName in lastLayer.perceptrons) {
+
+                const perceptron = lastLayer.perceptrons[perceptronName]
+
+                // Record iteration
+
+                i++
+
+                // Iterate if output is 0
+
+                if (perceptron.activateValue > 0) {
+
+                    // Take action connected to output
+
+                    if (i == 0) {
+
+                        human.breed(tick, inputs, outputs)
+                        continue
+                    }
+                    if (i == 1) {
+
+                        human.forage()
+                        break
+                    }
+                    if (i == 2) {
+
+                        human.drink()
+                        break
+                    }
+                }
             }
-
-            human.forage()
         }
 
         for (const ID in game.objects.predator) {

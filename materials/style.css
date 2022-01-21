@@ -276,3 +276,66 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     gap: 5px;
 }
+
+/* Visuals */
+
+.visualsParent {
+    position: fixed;
+    right: 100px;
+    top: 10px;
+    display: flex;
+    pointer-events: none;
+}
+
+.layerVisual {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.perceptronVisual {
+    background: rgb(28, 238, 0);
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0 20px 0;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: black;
+    position: relative;
+    outline: 1.9px solid black;
+}
+
+.inputPerceptron {
+    background: rgb(255, 187, 0);
+}
+
+.outputPerceptron {
+    background: rgb(250, 15, 15);
+}
+
+.textVisual {
+    font-size: 14px;
+    color: black;
+    position: absolute;
+    width: fit-content;
+}
+
+.lineParent {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.line {
+    stroke-width: 1.5px;
+}
+
+.lineDisconnected {
+    opacity: 0;
+}
