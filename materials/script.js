@@ -6,7 +6,7 @@ game.createGrid()
 
 runEnv()
 
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 50; i++) {
 
     const left = Math.floor(Math.random() * gameWidth / gridSize) * gridSize
     const top = Math.floor(Math.random() * gameHeight / gridSize) * gridSize
