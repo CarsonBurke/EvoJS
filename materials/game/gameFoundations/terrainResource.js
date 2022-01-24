@@ -21,7 +21,7 @@ TerrainResource.prototype.harvest = function(harvester) {
 
     const terrainResource = this
 
-    harvester.resources[terrainResource.resourceType]++
+    if (harvester.resources[terrainResource.resourceType] < resourceCarryCapacity) harvester.resources[terrainResource.resourceType]++
 
     terrainResource.amount--
 }

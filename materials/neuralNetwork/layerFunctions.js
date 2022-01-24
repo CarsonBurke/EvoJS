@@ -11,5 +11,6 @@ Layer.prototype.addPerceptron = function() {
     layer.perceptrons[perceptronCount] = new Perceptron({
         networkID: layer.networkID,
         layerName: layer.name,
+        name: perceptronCount,
     })
 }
