@@ -76,7 +76,7 @@ const terrainResourceTypes = {
         amount: 10,
         width: gridSize,
         height: gridSize,
-        threshold: 0.15,
+        threshold: 1.25,
         resourceType: 'food',
         depletedType: 'noBerryBush1'
     },
@@ -84,7 +84,7 @@ const terrainResourceTypes = {
         amount: 10,
         width: gridSize,
         height: gridSize,
-        threshold: 0.1,
+        threshold: 0.05,
         resourceType: 'food',
         depletedType: 'noBerryBush2'
     },
@@ -92,21 +92,21 @@ const terrainResourceTypes = {
         amount: 0,
         width: gridSize,
         height: gridSize,
-        threshold: 0.75,
+        threshold: 0.025,
         replenishedType: 'berryBush1'
     },
     noBerryBush2: {
         amount: 0,
         width: gridSize,
         height: gridSize,
-        threshold: 0.05,
+        threshold: 0,
         replenishedType: 'berryBush2'
     },
     tree1: {
         amount: 15,
         width: gridSize,
         height: gridSize,
-        threshold: 0.25,
+        threshold: 0,
         resourceType: 'wood',
     },
     tree2: {
