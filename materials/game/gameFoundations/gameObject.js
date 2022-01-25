@@ -134,7 +134,7 @@ GameObject.prototype.breed = function(inputs, outputs) {
 
     while (newChildAmount < childAmount) {
 
-        const child = new animalClasses[gameObject.constructor.name](gameObject.pos.left, gameObject.pos.top)
+        const child = new animalClasses[gameObject.constructor.name](gameObject.pos.left, gameObject.pos.top, gameObject.preyType || gameObject.predatorType)
 
         child.network = gameObject.network.clone(inputs, outputs)
 
@@ -175,7 +175,7 @@ GameObject.prototype.attack = function(target) {
 
     target.delete()
 
-    gameObject.food += 30
+    gameObject.food += 50
 }
 
 GameObject.prototype.drink = function() {
@@ -202,7 +202,7 @@ GameObject.prototype.forage = function() {
 
     const gameObject = this
 
-    const bushes = Object.values(game.objects.resource).filter(terrainResource => (terrainResource.terrainResourceType == 'berryBush1' || terrainResource.terrainResourceType == 'berryBush2') && terrainResource.amount > 0)
+    const bushes = Object.values(game.objects.resource).filter(terrainResource => (terrainResource.terrainResourceType == 'berryBush' || terrainResource.terrainResourceType == 'berryBush2') && terrainResource.amount > 0)
 
     const closestBush = gameObject.pos.sortGameObjectsByDistance(bushes)[0]
 

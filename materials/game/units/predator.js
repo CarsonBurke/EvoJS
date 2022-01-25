@@ -11,6 +11,7 @@ class Predator extends GameObject {
         predator.predatorType = predatorType
 
         predator.health = Math.random() * 10
+        predator.age = 0
 
         predator.resources = {}
 
@@ -19,6 +20,9 @@ class Predator extends GameObject {
             predator.resources[resourceType] = 0
         }
 
-        predator.resources.food = 5
+        predator.childAmount = 0
+
+        predator.resources.food = 2
+        predator.resources.water = 2
     }
 }

@@ -72,50 +72,21 @@ const terrainResourceTypes = {
         height: gridSize,
         threshold: 0.2,
     },
-    berryBush1: {
+    berryBush: {
         amount: 10,
         width: gridSize,
         height: gridSize,
-        threshold: 1.25,
+        threshold: 1,
         resourceType: 'food',
-        depletedType: 'noBerryBush1'
+        depletedType: 'berryBushNoBerries'
     },
-    berryBush2: {
-        amount: 10,
-        width: gridSize,
-        height: gridSize,
-        threshold: 0.05,
-        resourceType: 'food',
-        depletedType: 'noBerryBush2'
-    },
-    noBerryBush1: {
-        amount: 0,
-        width: gridSize,
-        height: gridSize,
-        threshold: 0.025,
-        replenishedType: 'berryBush1'
-    },
-    noBerryBush2: {
+    berryBushNoBerries: {
         amount: 0,
         width: gridSize,
         height: gridSize,
         threshold: 0,
-        replenishedType: 'berryBush2'
+        replenishedType: 'berryBush'
     },
-    tree1: {
-        amount: 15,
-        width: gridSize,
-        height: gridSize,
-        threshold: 0,
-        resourceType: 'wood',
-    },
-    tree2: {
-        amount: 15,
-        width: gridSize,
-        height: gridSize,
-        threshold: 0,
-        resourceType: 'wood',
-    }
 }
 
 const fertileTerrainOptions = {
@@ -125,22 +96,10 @@ const fertileTerrainOptions = {
     grass: {
         weight: 2,
     },
-    berryBush1: {
+    berryBush: {
         weight: 4,
     },
-    berryBush2: {
+    berryBushNoBerries: {
         weight: 4,
     },
-    noBerryBush1: {
-        weight: 4,
-    },
-    noBerryBush2: {
-        weight: 4,
-    },
-    tree1: {
-        weight: 100,
-    },
-    tree2: {
-        weight: 100,
-    }
 }

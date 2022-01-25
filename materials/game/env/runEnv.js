@@ -111,7 +111,7 @@ function runEnv() {
                 { name: 'Breed', function: () => human.breed(inputs, outputs) },
                 { name: 'Forage', function: () => human.forage() },
                 { name: 'Drink', function: () => human.drink() },
-                /* { name: 'Hunt' }, */
+                { name: 'Hunt', function: () => human.hunt('prey') },
             ]
 
             if (!human.network) human.createNetwork(inputs, outputs)
@@ -148,14 +148,91 @@ function runEnv() {
             humanWithMostFood.network.visualsParent.classList.add('visualsParentShow')
         }
 
-        /* for (const ID in game.objects.predator) {
+        let preyCount = 0
+
+        for (const ID in game.objects.prey) {
+
+            const prey = game.objects.prey[ID]
+
+            preyCount++
+
+            const inputs = [
+                { name: 'Can have child', value: prey.canHaveChildren() ? 1 : 0 },
+                { name: 'Food count', value: resourceCarryCapacity - prey.resources.food },
+                { name: 'Water count', value: resourceCarryCapacity - prey.resources.water },
+            ]
+            
+            const outputs = [
+                { name: 'Breed', function: () => prey.breed(inputs, outputs) },
+                { name: 'Forage', function: () => prey.forage() },
+                { name: 'Drink', function: () => prey.drink() },
+            ]
+
+            if (!prey.network) prey.createNetwork(inputs, outputs)
+
+            prey.network.forwardPropagate(inputs)
+
+            prey.network.visualsParent.classList.remove('visualsParentShow')
+
+            // Find last layer
+            
+            const lastLayer = prey.network.layers[Object.keys(prey.network.layers).length - 1]
+
+            // Sort perceptrons by activateValue and get the largest one
+
+            const perceptronWithLargestValue = Object.values(lastLayer.perceptrons).sort((a, b) => a.activateValue - b.activateValue).reverse()[0]
+
+            //
+
+            if (perceptronWithLargestValue.activateValue > 0) outputs[perceptronWithLargestValue.name].function()
+
+            //
+
+            prey.updateStats()
+        }
+
+        let predatorCount = 0
+
+        for (const ID in game.objects.predator) {
 
             const predator = game.objects.predator[ID]
 
-            predator.updateStats()
+            predatorCount++
+
+            const inputs = [
+                { name: 'Can have child', value: predator.canHaveChildren() ? 1 : 0 },
+                { name: 'Food count', value: resourceCarryCapacity - predator.resources.food },
+                { name: 'Water count', value: resourceCarryCapacity - predator.resources.water },
+            ]
             
-            predator.hunt('prey')
-        } */
+            const outputs = [
+                { name: 'Breed', function: () => predator.breed(inputs, outputs) },
+                { name: 'Drink', function: () => predator.drink() },
+                { name: 'Hunt', function: () => predator.hunt('prey') },
+            ]
+
+            if (!predator.network) predator.createNetwork(inputs, outputs)
+
+            predator.network.forwardPropagate(inputs)
+
+            predator.network.visualsParent.classList.remove('visualsParentShow')
+
+            // Find last layer
+            
+            const lastLayer = predator.network.layers[Object.keys(predator.network.layers).length - 1]
+
+            // Sort perceptrons by activateValue and get the largest one
+
+            const perceptronWithLargestValue = Object.values(lastLayer.perceptrons).sort((a, b) => a.activateValue - b.activateValue).reverse()[0]
+
+            //
+
+            if (perceptronWithLargestValue.activateValue > 0) outputs[perceptronWithLargestValue.name].function()
+
+            //
+
+            predator.updateStats()
+        }
 
         //
 
@@ -164,7 +241,9 @@ function runEnv() {
         const displayStats = {
             tick,
             humanCount,
-            humansMax
+            humansMax,
+            preyCount,
+            predatorCount,
         }
 
         for (const displayStatName in displayStats) {
