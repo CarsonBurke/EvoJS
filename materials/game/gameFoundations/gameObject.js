@@ -229,8 +229,8 @@ GameObject.prototype.updateStats = function() {
     if (gameObject.resources.food <= 0) gameObject.health -= 0.1
     if (gameObject.resources.water <= 0) gameObject.health -= 0.1
 
-    if (gameObject.resources.water > 0) gameObject.resources.water -= 0.03
-    if (gameObject.resources.food > 0) gameObject.resources.food -= 0.03
+    if (gameObject.resources.water > 0) gameObject.resources.water -= 0.05
+    if (gameObject.resources.food > 0) gameObject.resources.food -= 0.05
 
     if (gameObject.health <= 0) gameObject.delete()
 }
