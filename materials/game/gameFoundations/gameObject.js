@@ -101,13 +101,24 @@ GameObject.prototype.moveTo = function(targetPos) {
     return true
 }
 
-GameObject.prototype.breed = function(tick, inputs, outputs) {
+GameObject.prototype.canHaveChildren = function() {
 
     const gameObject = this
 
-    // Stpo if breeding is on cooldown
+    if (gameObject.childAmount >= maxChildren) return false
 
-    if (gameObject.lastBreed - tick > 0) return false
+    const breedChance = Math.random() * gameObject.age
+
+    if (breedChance < 400) return false
+
+    return true
+}
+
+GameObject.prototype.breed = function(inputs, outputs) {
+
+    const gameObject = this
+
+    if (!gameObject.canHaveChildren()) return false
 
     const animalClasses = {
         Human,
@@ -119,22 +130,19 @@ GameObject.prototype.breed = function(tick, inputs, outputs) {
 
     const childAmount = Math.random() * 3
 
-    let newHumanCount = 0
+    let newChildAmount = 0
 
-    while (newHumanCount < childAmount) {
+    while (newChildAmount < childAmount) {
 
         const child = new animalClasses[gameObject.constructor.name](gameObject.pos.left, gameObject.pos.top)
 
         child.network = gameObject.network.clone(inputs, outputs)
 
         child.network.learn()
-
-        child.lastBreed = tick + Math.random() * 800
         
-        newHumanCount++
+        gameObject.childAmount++
+        newChildAmount++
     }
-
-    gameObject.lastBreed = tick + childAmount * 500
 }
 
 GameObject.prototype.hunt = function(type) {
@@ -186,7 +194,7 @@ GameObject.prototype.drink = function() {
         return false
     }
 
-    gameObject.resources.water++
+    if (gameObject.resources.water < resourceCarryCapacity) gameObject.resources.water++
     return true
 }
 
@@ -214,13 +222,15 @@ GameObject.prototype.updateStats = function() {
 
     const gameObject = this
 
-    gameObject.health -= 0.01
+    gameObject.age++
 
-    if (gameObject.resources.food <= 0) gameObject.health -= 0.01
-    if (gameObject.resources.water <= 0) gameObject.health -= 0.01
+    gameObject.health -= Math.random() * gameObject.age / 100000
 
-    gameObject.resources.water -= 0.1
-    gameObject.resources.food -= 0.1
+    if (gameObject.resources.food <= 0) gameObject.health -= 0.1
+    if (gameObject.resources.water <= 0) gameObject.health -= 0.1
+
+    if (gameObject.resources.water > 0) gameObject.resources.water -= 0.03
+    if (gameObject.resources.food > 0) gameObject.resources.food -= 0.03
 
     if (gameObject.health <= 0) gameObject.delete()
 }
@@ -235,7 +245,7 @@ GameObject.prototype.createNetwork = function(inputs, outputs) {
     
     // Create layers
     
-    let layerCount = 3
+    let layerCount = 2
     
     for (let i = 0; i < layerCount; i++) network.addLayer()
     

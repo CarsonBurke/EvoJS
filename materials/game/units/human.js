@@ -10,7 +10,8 @@ class Human extends GameObject {
 
         human.humanType = ''
 
-        human.health = Math.random() * 20
+        human.health = Math.random() * 100
+        human.age = 0
 
         human.resources = {}
 
@@ -19,7 +20,9 @@ class Human extends GameObject {
             human.resources[resourceType] = 0
         }
 
-        human.resources.food = 1
-        human.resources.water = 1
+        human.childAmount = 0
+
+        human.resources.food = 2
+        human.resources.water = 2
     }
 }

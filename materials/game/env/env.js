@@ -17,6 +17,9 @@ const gameWidth = 1000
 const gameHeight = 1000
 const gridSize = 20
 
+const maxChildren = 10
+const resourceCarryCapacity = 100
+
 let ID = 0
 
 const resourceTypes = {

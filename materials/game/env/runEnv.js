@@ -102,16 +102,15 @@ function runEnv() {
             humanCount++
 
             const inputs = [
-                /* { name: 'X position', value: human.pos.left },
-                { name: 'Y position', value: human.pos.top }, */
-                { name: 'Food count', value: human.resources.food },
-                { name: 'Water count', value: human.resources.water },
+                { name: 'Can have child', value: human.canHaveChildren() ? 1 : 0 },
+                { name: 'Food count', value: resourceCarryCapacity - human.resources.food },
+                { name: 'Water count', value: resourceCarryCapacity - human.resources.water },
             ]
             
             const outputs = [
-                { name: 'Breed' },
-                { name: 'Forage' },
-                { name: 'Drink' },
+                { name: 'Breed', function: () => human.breed(inputs, outputs) },
+                { name: 'Forage', function: () => human.forage() },
+                { name: 'Drink', function: () => human.drink() },
                 /* { name: 'Hunt' }, */
             ]
 
@@ -125,41 +124,15 @@ function runEnv() {
             
             const lastLayer = human.network.layers[Object.keys(human.network.layers).length - 1]
 
-            // Track iterations and loop through output perceptrons
+            // Sort perceptrons by activateValue and get the largest one
 
-            let i = -1
+            const perceptronWithLargestValue = Object.values(lastLayer.perceptrons).sort((a, b) => a.activateValue - b.activateValue).reverse()[0]
 
-            for (const perceptronName in lastLayer.perceptrons) {
+            //
 
-                const perceptron = lastLayer.perceptrons[perceptronName]
+            if (perceptronWithLargestValue.activateValue > 0) outputs[perceptronWithLargestValue.name].function()
 
-                // Record iteration
-
-                i++
-
-                // Iterate if output is 0
-
-                if (perceptron.activateValue > 0) {
-
-                    // Take action connected to output
-
-                    if (i == 0) {
-
-                        human.breed(tick, inputs, outputs)
-                        continue
-                    }
-                    if (i == 1) {
-
-                        human.forage()
-                        break
-                    }
-                    if (i == 2) {
-
-                        human.drink()
-                        break
-                    }
-                }
-            }
+            //
 
             human.updateStats()
         }
