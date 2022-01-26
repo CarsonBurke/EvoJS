@@ -17,7 +17,7 @@ const gameWidth = 1000
 const gameHeight = 1000
 const gridSize = 20
 
-const maxChildren = 10
+const maxChildren = 20
 const resourceCarryCapacity = 100
 
 let ID = 0
@@ -66,6 +66,7 @@ const terrainResourceTypes = {
         width: gridSize,
         height: gridSize,
         threshold: 0.4,
+        resourceType: 'food',
     }, */
     grass: {
         width: gridSize,

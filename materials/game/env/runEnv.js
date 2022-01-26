@@ -101,17 +101,20 @@ function runEnv() {
 
             humanCount++
 
+            const huntTargetType = 'prey'
+
             const inputs = [
                 { name: 'Can have child', value: human.canHaveChildren() ? 1 : 0 },
                 { name: 'Food count', value: resourceCarryCapacity - human.resources.food },
                 { name: 'Water count', value: resourceCarryCapacity - human.resources.water },
+                { name: 'Can hunt', value: human.findHuntTarget(huntTargetType) ? 1 : 0 },
             ]
             
             const outputs = [
                 { name: 'Breed', function: () => human.breed(inputs, outputs) },
                 { name: 'Forage', function: () => human.forage() },
                 { name: 'Drink', function: () => human.drink() },
-                { name: 'Hunt', function: () => human.hunt('prey') },
+                { name: 'Hunt', function: () => human.hunt(huntTargetType) },
             ]
 
             if (!human.network) human.createNetwork(inputs, outputs)
@@ -199,16 +202,19 @@ function runEnv() {
 
             predatorCount++
 
+            const huntTargetType = 'prey'
+
             const inputs = [
                 { name: 'Can have child', value: predator.canHaveChildren() ? 1 : 0 },
                 { name: 'Food count', value: resourceCarryCapacity - predator.resources.food },
                 { name: 'Water count', value: resourceCarryCapacity - predator.resources.water },
+                { name: 'Can hunt', value: predator.findHuntTarget(huntTargetType) ? 1 : 0 },
             ]
             
             const outputs = [
                 { name: 'Breed', function: () => predator.breed(inputs, outputs) },
                 { name: 'Drink', function: () => predator.drink() },
-                { name: 'Hunt', function: () => predator.hunt('prey') },
+                { name: 'Hunt', function: () => predator.hunt(huntTargetType) },
             ]
 
             if (!predator.network) predator.createNetwork(inputs, outputs)

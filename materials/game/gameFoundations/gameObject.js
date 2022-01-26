@@ -145,23 +145,30 @@ GameObject.prototype.breed = function(inputs, outputs) {
     }
 }
 
-GameObject.prototype.hunt = function(type) {
+GameObject.prototype.findHuntTarget = function(type) {
 
     const gameObject = this
 
     const creaturesOfType = Object.values(game.objects[type])
     
     const closestCreatureOfType = gameObject.pos.sortGameObjectsByDistance(creaturesOfType)[0]
+    return closestCreatureOfType
+}
 
-    if (!closestCreatureOfType) return false
+GameObject.prototype.hunt = function(type) {
 
-    if (gameObject.pos.getDistance(closestCreatureOfType.pos) > gridSize * 1.5) {
+    const gameObject = this
 
-        gameObject.moveTo(closestCreatureOfType.pos) 
+    const huntTarget = gameObject.findHuntTarget(type)
+    if (!huntTarget) return false
+
+    if (gameObject.pos.getDistance(huntTarget.pos) > gridSize * 1.5) {
+
+        gameObject.moveTo(huntTarget.pos) 
         return false
     }
 
-    gameObject.attack(closestCreatureOfType)
+    gameObject.attack(huntTarget)
     return true
 }
 
